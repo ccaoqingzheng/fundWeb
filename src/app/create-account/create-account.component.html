@@ -1,0 +1,42 @@
+<div class="loginBody">
+  <img src="./assets/img/bg.jpg" class="loginImg">
+
+
+  <div class="login_form_div">
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" class="login-form">
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="phone">账号</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="请输入账号!">
+          <input nz-input formControlName="phone" id="phone"/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>密码</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="请输入您的密码!">
+          <input nz-input type="password" id="password" formControlName="password"
+                 (ngModelChange)="updateConfirmValidator()"/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired>确认密码</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
+          <input nz-input type="password" formControlName="checkPassword" id="checkPassword"/>
+          <ng-template #errorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              请确认您的密码!
+            </ng-container>
+            <ng-container *ngIf="control.hasError('confirm')">
+              您输入的两个密码不一致!
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item nz-row class="register-area">
+        <nz-form-control [nzSpan]="14" [nzOffset]="6">
+          <button nz-button nzType="primary" style="width: 100%">注册</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</div>
